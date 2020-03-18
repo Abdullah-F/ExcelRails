@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
                                        num_fmt: 8)
       date_cell = style.add_style(format_code: "yyyy-mm-dd", border: Axlsx::STYLE_THIN_BORDER)
       wb.add_worksheet(name: "Products") do |sheet|
+        sheet.add_row %i(title price created_at updated_at)
         @products.each do |product|
           sheet.add_row [product.title, product.price, product.created_at, product.updated_at], style: [nil, highlight_cell, date_cell]
         end
